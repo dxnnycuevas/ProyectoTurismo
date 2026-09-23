@@ -1,8 +1,23 @@
 @{
     ViewData["Title"] = "Inicio";
+    var modulos = (List<(string Titulo, string Controlador, int Total, bool SoloAdmin)>)ViewBag.Modulos;
 }
 
-<div class="text-center py-4">
-    <h1 class="display-5">Bienvenido, @User.Identity?.Name</h1>
+<div class="py-3">
+    <h1 class="h3">Bienvenido, @User.Identity?.Name</h1>
     <p class="text-muted">Panel de administración de Turismo Jimaní.</p>
+</div>
+
+<div class="row g-3">
+    @foreach (var modulo in modulos)
+    {
+        <div class="col-6 col-md-4 col-lg-3">
+            <a asp-controller="@modulo.Controlador" asp-action="Index" class="card h-100 text-decoration-none shadow-sm">
+                <div class="card-body">
+                    <div class="text-muted small">@modulo.Titulo</div>
+                    <div class="fs-3 fw-semibold text-dark">@modulo.Total</div>
+                </div>
+            </a>
+        </div>
+    }
 </div>

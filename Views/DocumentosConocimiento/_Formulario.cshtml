@@ -1,0 +1,36 @@
+@model DocumentoConocimiento
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Titulo" class="form-label">Título</label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="TipoFuente" class="form-label">Tipo de fuente</label>
+        <input asp-for="TipoFuente" class="form-control" />
+        <span asp-validation-for="TipoFuente" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="IdReferencia" class="form-label">Id de referencia</label>
+        <input asp-for="IdReferencia" class="form-control" type="number" min="0" />
+        <span asp-validation-for="IdReferencia" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="Contenido" class="form-label">Contenido</label>
+        <textarea asp-for="Contenido" class="form-control" rows="8"></textarea>
+        <span asp-validation-for="Contenido" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <div class="form-check">
+            <input asp-for="Activo" class="form-check-input" />
+            <label asp-for="Activo" class="form-check-label">Activo</label>
+        </div>
+    </div>
+</div>

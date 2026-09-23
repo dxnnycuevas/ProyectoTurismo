@@ -1,0 +1,51 @@
+@model Horario
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="IdLugar" class="form-label">Lugar</label>
+        <select asp-for="IdLugar" class="form-select" asp-items="ViewBag.ListaIdLugar">
+            <option value="">-- Seleccione --</option>
+        </select>
+        @if (ViewBag.ListaIdLugar is SelectList listaIdLugar && !listaIdLugar.Any())
+        {
+            <div class="form-text">No hay lugares disponibles. <a asp-controller="Lugares" asp-action="Create">Registrar un lugar</a></div>
+        }
+        <span asp-validation-for="IdLugar" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="DiaSemana" class="form-label">Día de la semana</label>
+        <select asp-for="DiaSemana" class="form-select">
+            <option value="">-- Seleccione --</option>
+            <option value="1">Lunes</option>
+            <option value="2">Martes</option>
+            <option value="3">Miércoles</option>
+            <option value="4">Jueves</option>
+            <option value="5">Viernes</option>
+            <option value="6">Sábado</option>
+            <option value="7">Domingo</option>
+        </select>
+        <span asp-validation-for="DiaSemana" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="HoraApertura" class="form-label">Hora de apertura</label>
+        <input asp-for="HoraApertura" class="form-control" type="time" asp-format="{0:hh\:mm}" />
+        <span asp-validation-for="HoraApertura" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="HoraCierre" class="form-label">Hora de cierre</label>
+        <input asp-for="HoraCierre" class="form-control" type="time" asp-format="{0:hh\:mm}" />
+        <span asp-validation-for="HoraCierre" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <div class="form-check">
+            <input asp-for="Cerrado" class="form-check-input" />
+            <label asp-for="Cerrado" class="form-check-label">Cerrado ese día</label>
+        </div>
+    </div>
+</div>

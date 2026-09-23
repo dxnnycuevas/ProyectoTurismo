@@ -1,0 +1,51 @@
+@model ConsultaAsistente
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="IdSesion" class="form-label">Id de sesión</label>
+        <input asp-for="IdSesion" class="form-control" />
+        <span asp-validation-for="IdSesion" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="MensajeUsuario" class="form-label">Mensaje del usuario</label>
+        <textarea asp-for="MensajeUsuario" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="MensajeUsuario" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="IntencionDetectada" class="form-label">Intención detectada</label>
+        <input asp-for="IntencionDetectada" class="form-control" />
+        <span asp-validation-for="IntencionDetectada" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="TipoRespuesta" class="form-label">Tipo de respuesta</label>
+        <input asp-for="TipoRespuesta" class="form-control" />
+        <span asp-validation-for="TipoRespuesta" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="RespuestaAsistente" class="form-label">Respuesta del asistente</label>
+        <textarea asp-for="RespuestaAsistente" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="RespuestaAsistente" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="RespuestaCorrecta" class="form-label">¿Respuesta correcta?</label>
+        <select asp-for="RespuestaCorrecta" class="form-select">
+            <option value="">Sin evaluar</option>
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+        </select>
+        <span asp-validation-for="RespuestaCorrecta" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="TiempoRespuestaMilisegundos" class="form-label">Tiempo de respuesta (ms)</label>
+        <input asp-for="TiempoRespuestaMilisegundos" class="form-control" type="number" min="0" />
+        <span asp-validation-for="TiempoRespuestaMilisegundos" class="text-danger small"></span>
+    </div>
+</div>

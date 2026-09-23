@@ -1,0 +1,31 @@
+@model DocumentoConocimiento
+@{
+    ViewData["Title"] = "Detalle de documento";
+}
+
+<h2>Detalle de documento</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Título</dt>
+        <dd class="col-sm-8">@Model.Titulo</dd>
+        <dt class="col-sm-4">Tipo de fuente</dt>
+        <dd class="col-sm-8">@Model.TipoFuente</dd>
+        <dt class="col-sm-4">Id de referencia</dt>
+        <dd class="col-sm-8">@Model.IdReferencia</dd>
+        <dt class="col-sm-4">Contenido</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.Contenido</span></dd>
+        <dt class="col-sm-4">Activo</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.Activo)</dd>
+        <dt class="col-sm-4">Fecha de creación</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaCreacion)</dd>
+        <dt class="col-sm-4">Última actualización</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaActualizacion)</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdDocumento" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

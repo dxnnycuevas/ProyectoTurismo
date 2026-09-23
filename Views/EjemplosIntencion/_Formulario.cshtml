@@ -1,0 +1,29 @@
+@model EjemploIntencion
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<div class="row g-3">
+    <div class="col-md-8">
+        <label asp-for="IdIntencion" class="form-label">Intención</label>
+        <select asp-for="IdIntencion" class="form-select" asp-items="ViewBag.ListaIdIntencion">
+            <option value="">-- Seleccione --</option>
+        </select>
+        <span asp-validation-for="IdIntencion" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Idioma" class="form-label">Idioma</label>
+        <select asp-for="Idioma" class="form-select">
+            <option value="">-- Seleccione --</option>
+            <option value="es">Español</option>
+            <option value="en">Inglés</option>
+        </select>
+        <span asp-validation-for="Idioma" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="Texto" class="form-label">Texto de ejemplo</label>
+        <textarea asp-for="Texto" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Texto" class="text-danger small"></span>
+    </div>
+</div>

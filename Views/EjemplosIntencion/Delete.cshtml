@@ -1,0 +1,28 @@
+@model EjemploIntencion
+@{
+    ViewData["Title"] = "Eliminar ejemplo";
+}
+
+<h2>Eliminar ejemplo</h2>
+<hr />
+
+<div class="alert alert-danger">¿Está seguro de que desea eliminar este registro? Esta acción no se puede deshacer.</div>
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Intención</dt>
+        <dd class="col-sm-8">@Model.Intencion?.Nombre</dd>
+        <dt class="col-sm-4">Idioma</dt>
+        <dd class="col-sm-8">@Model.Idioma</dd>
+        <dt class="col-sm-4">Texto de ejemplo</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.Texto</span></dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="id" value="@Model.IdEjemplo" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

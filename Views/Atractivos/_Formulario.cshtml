@@ -1,0 +1,71 @@
+@model Atractivo
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="IdLugar" class="form-label">Lugar</label>
+        <select asp-for="IdLugar" class="form-select" asp-items="ViewBag.ListaIdLugar">
+            <option value="">-- Seleccione --</option>
+        </select>
+        @if (ViewBag.ListaIdLugar is SelectList listaIdLugar && !listaIdLugar.Any())
+        {
+            <div class="form-text">No hay lugares disponibles. <a asp-controller="Lugares" asp-action="Create">Registrar un lugar</a></div>
+        }
+        <span asp-validation-for="IdLugar" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="TipoAtractivo" class="form-label">Tipo de atractivo</label>
+        <input asp-for="TipoAtractivo" class="form-control" />
+        <span asp-validation-for="TipoAtractivo" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="EstadoConservacion" class="form-label">Estado de conservación</label>
+        <input asp-for="EstadoConservacion" class="form-control" />
+        <span asp-validation-for="EstadoConservacion" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="NivelDificultad" class="form-label">Nivel de dificultad</label>
+        <select asp-for="NivelDificultad" class="form-select">
+            <option value="">-- Sin especificar --</option>
+            <option value="Fácil">Fácil</option>
+            <option value="Moderada">Moderada</option>
+            <option value="Difícil">Difícil</option>
+        </select>
+        <span asp-validation-for="NivelDificultad" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="DuracionVisitaMinutos" class="form-label">Duración de la visita (minutos)</label>
+        <input asp-for="DuracionVisitaMinutos" class="form-control" type="number" min="0" />
+        <span asp-validation-for="DuracionVisitaMinutos" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="InformacionNatural" class="form-label">Información natural</label>
+        <textarea asp-for="InformacionNatural" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="InformacionNatural" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="InformacionCultural" class="form-label">Información cultural</label>
+        <textarea asp-for="InformacionCultural" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="InformacionCultural" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="InformacionAcceso" class="form-label">Información de acceso</label>
+        <textarea asp-for="InformacionAcceso" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="InformacionAcceso" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <div class="form-check">
+            <input asp-for="Destacado" class="form-check-input" />
+            <label asp-for="Destacado" class="form-check-label">Destacado</label>
+        </div>
+    </div>
+</div>

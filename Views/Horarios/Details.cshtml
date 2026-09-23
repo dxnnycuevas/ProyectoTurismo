@@ -1,0 +1,27 @@
+@model Horario
+@{
+    ViewData["Title"] = "Detalle de horario";
+}
+
+<h2>Detalle de horario</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Lugar</dt>
+        <dd class="col-sm-8">@Model.Lugar?.Nombre</dd>
+        <dt class="col-sm-4">Día de la semana</dt>
+        <dd class="col-sm-8">@Formato.DiaSemana(Model.DiaSemana)</dd>
+        <dt class="col-sm-4">Hora de apertura</dt>
+        <dd class="col-sm-8">@Formato.Hora(Model.HoraApertura)</dd>
+        <dt class="col-sm-4">Hora de cierre</dt>
+        <dd class="col-sm-8">@Formato.Hora(Model.HoraCierre)</dd>
+        <dt class="col-sm-4">Cerrado ese día</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.Cerrado)</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdHorario" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

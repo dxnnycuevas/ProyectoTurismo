@@ -1,0 +1,25 @@
+@model Contacto
+@{
+    ViewData["Title"] = "Detalle de contacto";
+}
+
+<h2>Detalle de contacto</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Lugar</dt>
+        <dd class="col-sm-8">@Model.Lugar?.Nombre</dd>
+        <dt class="col-sm-4">Tipo de contacto</dt>
+        <dd class="col-sm-8">@Model.TipoContacto</dd>
+        <dt class="col-sm-4">Valor</dt>
+        <dd class="col-sm-8">@Model.ValorContacto</dd>
+        <dt class="col-sm-4">Contacto principal</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.EsPrincipal)</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdContacto" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

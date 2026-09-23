@@ -1,0 +1,48 @@
+@model Imagen
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<div class="row g-3">
+    <div class="col-md-12">
+        <label asp-for="UrlImagen" class="form-label">URL de la imagen</label>
+        <input asp-for="UrlImagen" class="form-control" type="url" placeholder="https://" />
+        <span asp-validation-for="UrlImagen" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="IdLugar" class="form-label">Lugar</label>
+        <select asp-for="IdLugar" class="form-select" asp-items="ViewBag.ListaIdLugar">
+            <option value="">-- Seleccione --</option>
+        </select>
+        @if (ViewBag.ListaIdLugar is SelectList listaIdLugar && !listaIdLugar.Any())
+        {
+            <div class="form-text">No hay lugares disponibles. <a asp-controller="Lugares" asp-action="Create">Registrar un lugar</a></div>
+        }
+        <span asp-validation-for="IdLugar" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="TextoAlternativo" class="form-label">Texto alternativo</label>
+        <input asp-for="TextoAlternativo" class="form-control" />
+        <span asp-validation-for="TextoAlternativo" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="Descripcion" class="form-label">Descripción</label>
+        <textarea asp-for="Descripcion" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Descripcion" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="OrdenVisualizacion" class="form-label">Orden de visualización</label>
+        <input asp-for="OrdenVisualizacion" class="form-control" type="number" min="0" />
+        <span asp-validation-for="OrdenVisualizacion" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <div class="form-check">
+            <input asp-for="EsPrincipal" class="form-check-input" />
+            <label asp-for="EsPrincipal" class="form-check-label">Es la imagen principal</label>
+        </div>
+    </div>
+</div>

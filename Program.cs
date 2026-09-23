@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using AppDonnyCuevas20210074.Data;
+using AppDonnyCuevas20210074.Helpers;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,9 +41,36 @@ builder.Services.AddControllersWithViews(options =>
         .Build();
 
     options.Filters.Add(new AuthorizeFilter(politica));
+
+    // Mensajes de validación en español
+    options.ModelMetadataDetailsProviders.Add(new MensajesValidacionProvider());
+
+    var mensajes = options.ModelBindingMessageProvider;
+    mensajes.SetValueMustNotBeNullAccessor(_ => "Este campo es obligatorio.");
+    mensajes.SetMissingBindRequiredValueAccessor(_ => "Este campo es obligatorio.");
+    mensajes.SetMissingKeyOrValueAccessor(() => "Este campo es obligatorio.");
+    mensajes.SetAttemptedValueIsInvalidAccessor((valor, _) => $"El valor '{valor}' no es válido.");
+    mensajes.SetUnknownValueIsInvalidAccessor(_ => "El valor no es válido.");
+    mensajes.SetValueIsInvalidAccessor(valor => $"El valor '{valor}' no es válido.");
+    mensajes.SetValueMustBeANumberAccessor(_ => "Debe ser un número.");
+    mensajes.SetNonPropertyAttemptedValueIsInvalidAccessor(valor => $"El valor '{valor}' no es válido.");
+    mensajes.SetNonPropertyUnknownValueIsInvalidAccessor(() => "El valor no es válido.");
+    mensajes.SetNonPropertyValueMustBeANumberAccessor(() => "Debe ser un número.");
 });
 
+// Cultura de República Dominicana (punto decimal, fechas dd/MM/yyyy)
+var cultura = new CultureInfo("es-DO");
+CultureInfo.DefaultThreadCurrentCulture = cultura;
+CultureInfo.DefaultThreadCurrentUICulture = cultura;
+
 var app = builder.Build();
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(cultura),
+    SupportedCultures = new[] { cultura },
+    SupportedUICultures = new[] { cultura }
+});
 
 // Roles (Administrador, Editor) y usuario administrador inicial
 DbInitializer.Inicializar(app.Services);

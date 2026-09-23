@@ -1,0 +1,39 @@
+@model Atractivo
+@{
+    ViewData["Title"] = "Detalle de atractivo";
+}
+
+<h2>Detalle de atractivo</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Lugar</dt>
+        <dd class="col-sm-8">@Model.Lugar?.Nombre</dd>
+        <dt class="col-sm-4">Tipo de atractivo</dt>
+        <dd class="col-sm-8">@Model.TipoAtractivo</dd>
+        <dt class="col-sm-4">Estado de conservación</dt>
+        <dd class="col-sm-8">@Model.EstadoConservacion</dd>
+        <dt class="col-sm-4">Nivel de dificultad</dt>
+        <dd class="col-sm-8">@Model.NivelDificultad</dd>
+        <dt class="col-sm-4">Duración de la visita (minutos)</dt>
+        <dd class="col-sm-8">@Model.DuracionVisitaMinutos</dd>
+        <dt class="col-sm-4">Información natural</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.InformacionNatural</span></dd>
+        <dt class="col-sm-4">Información cultural</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.InformacionCultural</span></dd>
+        <dt class="col-sm-4">Información de acceso</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.InformacionAcceso</span></dd>
+        <dt class="col-sm-4">Destacado</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.Destacado)</dd>
+        <dt class="col-sm-4">Fecha de creación</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaCreacion)</dd>
+        <dt class="col-sm-4">Última actualización</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaActualizacion)</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdAtractivo" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

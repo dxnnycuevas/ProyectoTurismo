@@ -1,0 +1,28 @@
+@model DocumentoConocimiento
+@{
+    ViewData["Title"] = "Eliminar documento";
+}
+
+<h2>Eliminar documento</h2>
+<hr />
+
+<div class="alert alert-danger">¿Está seguro de que desea eliminar este registro? Esta acción no se puede deshacer.</div>
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Título</dt>
+        <dd class="col-sm-8">@Model.Titulo</dd>
+        <dt class="col-sm-4">Tipo de fuente</dt>
+        <dd class="col-sm-8">@Model.TipoFuente</dd>
+        <dt class="col-sm-4">Activo</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.Activo)</dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="id" value="@Model.IdDocumento" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

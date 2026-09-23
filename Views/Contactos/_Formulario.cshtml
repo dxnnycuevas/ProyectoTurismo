@@ -1,0 +1,45 @@
+@model Contacto
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="IdLugar" class="form-label">Lugar</label>
+        <select asp-for="IdLugar" class="form-select" asp-items="ViewBag.ListaIdLugar">
+            <option value="">-- Seleccione --</option>
+        </select>
+        @if (ViewBag.ListaIdLugar is SelectList listaIdLugar && !listaIdLugar.Any())
+        {
+            <div class="form-text">No hay lugares disponibles. <a asp-controller="Lugares" asp-action="Create">Registrar un lugar</a></div>
+        }
+        <span asp-validation-for="IdLugar" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="TipoContacto" class="form-label">Tipo de contacto</label>
+        <select asp-for="TipoContacto" class="form-select">
+            <option value="">-- Seleccione --</option>
+            <option value="Teléfono">Teléfono</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Correo">Correo</option>
+            <option value="Sitio web">Sitio web</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Otro">Otro</option>
+        </select>
+        <span asp-validation-for="TipoContacto" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="ValorContacto" class="form-label">Valor</label>
+        <input asp-for="ValorContacto" class="form-control" />
+        <span asp-validation-for="ValorContacto" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <div class="form-check">
+            <input asp-for="EsPrincipal" class="form-check-input" />
+            <label asp-for="EsPrincipal" class="form-check-label">Contacto principal</label>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+@model Categoria
+@{
+    ViewData["Title"] = "Detalle de categoría";
+}
+
+<h2>Detalle de categoría</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Nombre</dt>
+        <dd class="col-sm-8">@Model.Nombre</dd>
+        <dt class="col-sm-4">Descripción</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.Descripcion</span></dd>
+        <dt class="col-sm-4">Activo</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.Activo)</dd>
+        <dt class="col-sm-4">Fecha de creación</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaCreacion)</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdCategoria" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

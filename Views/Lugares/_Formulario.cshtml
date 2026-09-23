@@ -1,0 +1,110 @@
+@model Lugar
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Nombre" class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Municipio" class="form-label">Municipio</label>
+        <input asp-for="Municipio" class="form-control" />
+        <span asp-validation-for="Municipio" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Provincia" class="form-label">Provincia</label>
+        <input asp-for="Provincia" class="form-control" />
+        <span asp-validation-for="Provincia" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="DescripcionCorta" class="form-label">Descripción corta</label>
+        <textarea asp-for="DescripcionCorta" class="form-control" rows="2"></textarea>
+        <span asp-validation-for="DescripcionCorta" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="Descripcion" class="form-label">Descripción</label>
+        <textarea asp-for="Descripcion" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Descripcion" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Direccion" class="form-label">Dirección</label>
+        <input asp-for="Direccion" class="form-control" />
+        <span asp-validation-for="Direccion" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Latitud" class="form-label">Latitud</label>
+        <input asp-for="Latitud" class="form-control" type="number" step="any" />
+        <span asp-validation-for="Latitud" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Longitud" class="form-label">Longitud</label>
+        <input asp-for="Longitud" class="form-control" type="number" step="any" />
+        <span asp-validation-for="Longitud" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Telefono" class="form-label">Teléfono</label>
+        <input asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Correo" class="form-label">Correo</label>
+        <input asp-for="Correo" class="form-control" type="email" />
+        <span asp-validation-for="Correo" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="SitioWeb" class="form-label">Sitio web</label>
+        <input asp-for="SitioWeb" class="form-control" type="url" placeholder="https://" />
+        <span asp-validation-for="SitioWeb" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <div class="form-check">
+            <input asp-for="Activo" class="form-check-input" />
+            <label asp-for="Activo" class="form-check-label">Activo</label>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label d-block">Categorías</label>
+        @foreach (var categoria in (List<Categoria>)ViewBag.Categorias)
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="categoriasSeleccionadas" value="@categoria.IdCategoria"
+                       id="cat_@categoria.IdCategoria" checked="@(((HashSet<int>)ViewBag.CategoriasSeleccionadas).Contains(categoria.IdCategoria))" />
+                <label class="form-check-label" for="cat_@categoria.IdCategoria">@categoria.Nombre</label>
+            </div>
+        }
+        @if (!((List<Categoria>)ViewBag.Categorias).Any())
+        {
+            <div class="form-text">No hay categorías activas. <a asp-controller="Categorias" asp-action="Create">Registrar una categoría</a></div>
+        }
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label d-block">Servicios</label>
+        @foreach (var servicio in (List<Servicio>)ViewBag.Servicios)
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="serviciosSeleccionados" value="@servicio.IdServicio"
+                       id="ser_@servicio.IdServicio" checked="@(((HashSet<int>)ViewBag.ServiciosSeleccionados).Contains(servicio.IdServicio))" />
+                <label class="form-check-label" for="ser_@servicio.IdServicio">@servicio.Nombre</label>
+            </div>
+        }
+        @if (!((List<Servicio>)ViewBag.Servicios).Any())
+        {
+            <div class="form-text">No hay servicios activos. <a asp-controller="Servicios" asp-action="Create">Registrar un servicio</a></div>
+        }
+    </div>
+</div>

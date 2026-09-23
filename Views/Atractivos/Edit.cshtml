@@ -1,0 +1,20 @@
+@model Atractivo
+@{
+    ViewData["Title"] = "Editar atractivo";
+}
+
+<h2>Editar atractivo</h2>
+<hr />
+
+<form asp-action="Edit" asp-route-id="@Model.IdAtractivo" method="post">
+    <partial name="_Formulario" model="Model" />
+
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

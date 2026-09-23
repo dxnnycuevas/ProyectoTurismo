@@ -23,6 +23,15 @@
                     <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Inicio</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Lugares</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Lugares" asp-action="Index">Lugares</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Imagenes" asp-action="Index">Imágenes</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Horarios" asp-action="Index">Horarios</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Contactos" asp-action="Index">Contactos</a></li>
+                                </ul>
+                            </li>
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Atractivos" asp-action="Index">Atractivos</a></li>
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Categorias" asp-action="Index">Categorías</a></li>
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Alojamientos" asp-action="Index">Alojamientos</a></li>
@@ -32,9 +41,23 @@
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Servicios" asp-action="Index">Servicios</a></li>
                             @if (User.IsInRole("Administrador"))
                             {
-                                <li class="nav-item"><a class="nav-link text-dark" asp-controller="Usuarios" asp-action="Index">Usuarios</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuarios</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index">Usuarios</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index">Roles</a></li>
+                                    </ul>
+                                </li>
                             }
-                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Asistente" asp-action="Index">Asistente</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Asistente</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Intenciones" asp-action="Index">Intenciones</a></li>
+                                    <li><a class="dropdown-item" asp-controller="EjemplosIntencion" asp-action="Index">Ejemplos de intención</a></li>
+                                    <li><a class="dropdown-item" asp-controller="DocumentosConocimiento" asp-action="Index">Documentos de conocimiento</a></li>
+                                    <li><a class="dropdown-item" asp-controller="ConsultasAsistente" asp-action="Index">Consultas</a></li>
+                                </ul>
+                            </li>
                         </ul>
 
                         <div class="d-flex align-items-center gap-2">
@@ -51,6 +74,20 @@
 
     <div class="container">
         <main role="main" class="pb-3">
+            @if (TempData["Exito"] is string exito)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @exito
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            }
+            @if (TempData["Error"] is string error)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @error
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            }
             @RenderBody()
         </main>
     </div>

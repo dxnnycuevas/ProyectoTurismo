@@ -1,0 +1,34 @@
+@model Ruta
+@{
+    ViewData["Title"] = "Eliminar ruta";
+}
+
+<h2>Eliminar ruta</h2>
+<hr />
+
+<div class="alert alert-danger">¿Está seguro de que desea eliminar este registro? Esta acción no se puede deshacer.</div>
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Nombre</dt>
+        <dd class="col-sm-8">@Model.Nombre</dd>
+        <dt class="col-sm-4">Lugar de origen</dt>
+        <dd class="col-sm-8">@Model.LugarOrigen?.Nombre</dd>
+        <dt class="col-sm-4">Lugar de destino</dt>
+        <dd class="col-sm-8">@Model.LugarDestino?.Nombre</dd>
+        <dt class="col-sm-4">Distancia (km)</dt>
+        <dd class="col-sm-8">@Formato.Numero(Model.DistanciaKilometros)</dd>
+        <dt class="col-sm-4">Duración (minutos)</dt>
+        <dd class="col-sm-8">@Model.DuracionMinutos</dd>
+        <dt class="col-sm-4">Activa</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.Activa)</dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="id" value="@Model.IdRuta" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

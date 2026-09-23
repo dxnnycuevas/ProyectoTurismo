@@ -1,0 +1,33 @@
+@model Lugar
+@{
+    ViewData["Title"] = "Eliminar lugar";
+}
+
+<h2>Eliminar lugar</h2>
+<hr />
+
+<div class="alert alert-danger">¿Está seguro de que desea eliminar este registro? Esta acción no se puede deshacer.</div>
+    <div class="alert alert-warning">También se eliminarán su atractivo, alojamiento, restaurante, transporte, imágenes, horarios y contactos.</div>
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Nombre</dt>
+        <dd class="col-sm-8">@Model.Nombre</dd>
+        <dt class="col-sm-4">Municipio</dt>
+        <dd class="col-sm-8">@Model.Municipio</dd>
+        <dt class="col-sm-4">Provincia</dt>
+        <dd class="col-sm-8">@Model.Provincia</dd>
+        <dt class="col-sm-4">Teléfono</dt>
+        <dd class="col-sm-8">@Model.Telefono</dd>
+        <dt class="col-sm-4">Activo</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.Activo)</dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="id" value="@Model.IdLugar" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

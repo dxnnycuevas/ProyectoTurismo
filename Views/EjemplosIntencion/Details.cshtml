@@ -1,0 +1,23 @@
+@model EjemploIntencion
+@{
+    ViewData["Title"] = "Detalle de ejemplo";
+}
+
+<h2>Detalle de ejemplo</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Intención</dt>
+        <dd class="col-sm-8">@Model.Intencion?.Nombre</dd>
+        <dt class="col-sm-4">Idioma</dt>
+        <dd class="col-sm-8">@Model.Idioma</dd>
+        <dt class="col-sm-4">Texto de ejemplo</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.Texto</span></dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdEjemplo" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

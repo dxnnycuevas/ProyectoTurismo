@@ -1,0 +1,31 @@
+@model Imagen
+@{
+    ViewData["Title"] = "Detalle de imagen";
+}
+
+<h2>Detalle de imagen</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">URL de la imagen</dt>
+        <dd class="col-sm-8"><img src="@Model.UrlImagen" alt="@Model.TextoAlternativo" class="img-fluid rounded mb-2" style="max-height:240px" /><br /><a href="@Model.UrlImagen" target="_blank" rel="noopener" class="small">@Model.UrlImagen</a></dd>
+        <dt class="col-sm-4">Lugar</dt>
+        <dd class="col-sm-8">@Model.Lugar?.Nombre</dd>
+        <dt class="col-sm-4">Texto alternativo</dt>
+        <dd class="col-sm-8">@Model.TextoAlternativo</dd>
+        <dt class="col-sm-4">Descripción</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.Descripcion</span></dd>
+        <dt class="col-sm-4">Orden de visualización</dt>
+        <dd class="col-sm-8">@Model.OrdenVisualizacion</dd>
+        <dt class="col-sm-4">Es la imagen principal</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.EsPrincipal)</dd>
+        <dt class="col-sm-4">Fecha de creación</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaCreacion)</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdImagen" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

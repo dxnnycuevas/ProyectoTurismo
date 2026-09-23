@@ -1,0 +1,29 @@
+@model Usuario
+@{
+    ViewData["Title"] = "Detalle de usuario";
+}
+
+<h2>Detalle de usuario</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Nombre completo</dt>
+        <dd class="col-sm-8">@Model.NombreCompleto</dd>
+        <dt class="col-sm-4">Correo</dt>
+        <dd class="col-sm-8">@Model.Correo</dd>
+        <dt class="col-sm-4">Rol</dt>
+        <dd class="col-sm-8">@Model.Rol?.Nombre</dd>
+        <dt class="col-sm-4">Activo</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.Activo)</dd>
+        <dt class="col-sm-4">Fecha de creación</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaCreacion)</dd>
+        <dt class="col-sm-4">Última actualización</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaActualizacion)</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdUsuario" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>

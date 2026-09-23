@@ -1,0 +1,30 @@
+@model ConsultaAsistente
+@{
+    ViewData["Title"] = "Eliminar consulta";
+}
+
+<h2>Eliminar consulta</h2>
+<hr />
+
+<div class="alert alert-danger">¿Está seguro de que desea eliminar este registro? Esta acción no se puede deshacer.</div>
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Mensaje del usuario</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.MensajeUsuario</span></dd>
+        <dt class="col-sm-4">Intención detectada</dt>
+        <dd class="col-sm-8">@Model.IntencionDetectada</dd>
+        <dt class="col-sm-4">¿Respuesta correcta?</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.RespuestaCorrecta)</dd>
+        <dt class="col-sm-4">Fecha de la consulta</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaConsulta)</dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="id" value="@Model.IdConsulta" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,33 @@
+@model ConsultaAsistente
+@{
+    ViewData["Title"] = "Detalle de consulta";
+}
+
+<h2>Detalle de consulta</h2>
+<hr />
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <dl class="row mb-0">
+        <dt class="col-sm-4">Id de sesión</dt>
+        <dd class="col-sm-8">@Model.IdSesion</dd>
+        <dt class="col-sm-4">Mensaje del usuario</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.MensajeUsuario</span></dd>
+        <dt class="col-sm-4">Intención detectada</dt>
+        <dd class="col-sm-8">@Model.IntencionDetectada</dd>
+        <dt class="col-sm-4">Tipo de respuesta</dt>
+        <dd class="col-sm-8">@Model.TipoRespuesta</dd>
+        <dt class="col-sm-4">Respuesta del asistente</dt>
+        <dd class="col-sm-8"><span style="white-space:pre-line">@Model.RespuestaAsistente</span></dd>
+        <dt class="col-sm-4">¿Respuesta correcta?</dt>
+        <dd class="col-sm-8">@Formato.SiNo(Model.RespuestaCorrecta)</dd>
+        <dt class="col-sm-4">Tiempo de respuesta (ms)</dt>
+        <dd class="col-sm-8">@Model.TiempoRespuestaMilisegundos</dd>
+        <dt class="col-sm-4">Fecha de la consulta</dt>
+        <dd class="col-sm-8">@Formato.Fecha(Model.FechaConsulta)</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdConsulta" class="btn btn-primary">Editar</a>
+<a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
